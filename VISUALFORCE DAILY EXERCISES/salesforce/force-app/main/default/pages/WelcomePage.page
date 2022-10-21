@@ -1,0 +1,9 @@
+<apex:page >    
+    <apex:pageBlock title="Hello {! $User.FirstName}!" >
+        <apex:pageBlockSection title="We are displaying below your favourite holiday destination!" collapsible="false">            
+        </apex:pageBlockSection>
+        <apex:pageBlockSection >
+            <apex:image url="http://marketlocator.sk/wp-content/uploads/2020/01/tatry-ml.jpg"/>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+</apex:page>

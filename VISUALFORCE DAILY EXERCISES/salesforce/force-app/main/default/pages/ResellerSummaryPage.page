@@ -1,0 +1,107 @@
+<apex:page controller="ResellerSummaryPage" >
+    <apex:form id="page" >
+        <apex:pageBlock title="Reseller summary page">
+            
+            <apex:actionRegion >
+            <apex:pageBlock id="taskInfo" title="Add Task">
+            <apex:pageBlockSection columns="1">
+                <apex:inputField label="Assigned To:" value="{!task.WhatId} "/>
+                <apex:inputField label="Subject:" value="{!task.Subject} "/>
+                <apex:inputField label="Status:" value="{!task.Status} "/>
+                <apex:inputField label="Priority:" value="{!task.Priority} "/>                
+                <apex:inputField label="Account Owner Email:" value="{!task.Account_Owner_Email__c} "/>
+                
+            </apex:pageBlockSection>
+                        <apex:pageBlockButtons >
+            <apex:commandButton action="{! save }" value="Save" reRender="page"/>
+        </apex:pageBlockButtons>
+            </apex:pageBlock>
+            </apex:actionRegion>
+    
+        <apex:pageBlock title="Case">
+                    <apex:panelgrid >
+                    <apex:selectList value="{!selectedField }" size="1">
+                        <apex:selectOption itemValue="CreatedDate" itemLabel="Case date ascending "/>
+                        <apex:selectOption itemValue="CreatedDateDESC" itemLabel="Case date descending "/>
+                        <apex:selectOption itemValue="AccountName" itemLabel="Account name ascending "/>
+                        <apex:selectOption itemValue="AccountNameDESC" itemLabel="Account name descending "/>
+                        <apex:selectOption itemValue="SubjectName" itemLabel="Subject name ascending "/>
+                        <apex:selectOption itemValue="SubjectNameDESC" itemLabel="Subject name descending "/>
+                        <apex:selectOption itemValue="Priority" itemLabel="Priority ascending "/>
+                        <apex:selectOption itemValue="PriorityDESC" itemLabel="Priority descending "/>
+                        <apex:selectOption itemValue="Status" itemLabel="Status ascending "/>
+                        <apex:selectOption itemValue="StatusDESC" itemLabel="Status descending "/>
+                        <apex:actionSupport event="onchange" reRender="cases" action="{!sortCases}" /> 
+                     </apex:selectList>                  
+                   </apex:panelgrid>
+            <apex:pageBlockTable value="{!Cases}" var="c" id="cases"> 
+                <apex:column value="{!c.CaseNumber}"/>
+                <apex:column value="{!c.CreatedDate}"/>
+                <apex:column value="{!c.AccountId}"/>
+                <apex:column headerValue="Subject">
+                    <apex:commandLink value="{!c.Subject}" action="{!gotoCaseDetailPage}">
+                    <apex:param name="Caseid" value="{!c.Id}" assignTo="{!caseId}"/>
+                    </apex:commandLink>
+                </apex:column>
+                <apex:column value="{!c.Priority}"/>
+                <apex:column value="{!c.Status}"/>
+            </apex:pageBlockTable>
+                </apex:pageBlock>
+                <apex:pageBlock title="Task">
+                    <apex:panelgrid >
+                    <apex:selectList value="{!selectedField2 }" size="1">
+                        <apex:selectOption itemValue="CreatedDate" itemLabel="Task date ascending "/>
+                        <apex:selectOption itemValue="CreatedDateDESC" itemLabel="Task date descending "/>
+                        <apex:selectOption itemValue="WhatId" itemLabel="Account name ascending "/>
+                        <apex:selectOption itemValue="WhatIdDESC" itemLabel="Account name descending "/>
+                        <apex:selectOption itemValue="SubjectName" itemLabel="Subject name ascending "/>
+                        <apex:selectOption itemValue="SubjectNameDESC" itemLabel="Subject name descending "/>
+                        <apex:selectOption itemValue="Priority" itemLabel="Priority ascending "/>
+                        <apex:selectOption itemValue="PriorityDESC" itemLabel="Priority descending "/>
+                        <apex:selectOption itemValue="Status" itemLabel="Status ascending "/>
+                        <apex:selectOption itemValue="StatusDESC" itemLabel="Status descending "/>
+                        <apex:actionSupport event="onchange" reRender="tasks" action="{!sortTasks}" /> 
+                     </apex:selectList>                  
+                   </apex:panelgrid>
+            <apex:pageBlockTable value="{!Tasks}" var="t" id="tasks">
+                <apex:column value="{!t.Id}" headerValue="Task ID"/>
+                <apex:column value="{!t.CreatedDate}"/>
+                <apex:column value="{!t.WhatId}" headerValue="Account Name"/>
+                <apex:column headerValue="Subject">
+                    <apex:commandLink value="{!t.Subject}" action="{!gotoTaskDetailPage}">
+                    <apex:param name="Taskid" value="{!t.Id}" assignTo="{!taskId}"/>
+                    </apex:commandLink>
+                </apex:column>
+                <apex:column value="{!t.Priority}"/>
+                <apex:column value="{!t.Status}"/>
+            </apex:pageBlockTable>
+                    </apex:pageBlock>
+                    <apex:pageBlock title="Event">
+                    <apex:panelgrid >
+                    <apex:selectList value="{!selectedField3 }" size="1">
+                        <apex:selectOption itemValue="CreatedDate" itemLabel="Event date ascending "/>
+                        <apex:selectOption itemValue="CreatedDateDESC" itemLabel="Event date descending "/>
+                        <apex:selectOption itemValue="WhatId" itemLabel="Account name ascending "/>
+                        <apex:selectOption itemValue="WhatIdDESC" itemLabel="Account name descending "/>
+                        <apex:selectOption itemValue="SubjectName" itemLabel="Subject name ascending "/>
+                        <apex:selectOption itemValue="SubjectNameDESC" itemLabel="Subject name descending "/>
+                        <apex:selectOption itemValue="EndDateTime" itemLabel="End date ascending "/>
+                        <apex:selectOption itemValue="EndDateTimeDESC" itemLabel="End date descending "/>
+                        <apex:actionSupport event="onchange" reRender="events" action="{!sortEvents}" /> 
+                     </apex:selectList>                  
+                   </apex:panelgrid>
+            <apex:pageBlockTable value="{!Events}" var="e" id="events">
+                <apex:column value="{!e.Id}" headerValue="Event ID"/>
+                <apex:column value="{!e.CreatedDate}"/>
+                <apex:column value="{!e.WhatId}"/>
+                <apex:column headerValue="Subject">
+                    <apex:commandLink value="{!e.Subject}" action="{!gotoEventDetailPage}">
+                    <apex:param name="Eventid" value="{!e.Id}" assignTo="{!eventId}"/>
+                    </apex:commandLink>
+                </apex:column>
+                <apex:column value="{!e.EndDateTime}"/>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+      </apex:pageBlock>
+    </apex:form>
+</apex:page>

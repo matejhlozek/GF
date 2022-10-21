@@ -1,0 +1,11 @@
+<apex:page standardController="Campaign">
+    <apex:pageBlock title="Campaign">
+        <apex:pageBlockSection columns="1">
+            <apex:outputField value="{!Campaign.name}"/>
+            <apex:outputField value="{!Campaign.type}"/>
+            <apex:outputField value="{!Campaign.status}"/>
+            <apex:outputField value="{!Campaign.ActualCost}"/>
+            <apex:outputField value="{!Campaign.BudgetedCost}"/>
+        </apex:pageBlockSection> 
+    </apex:pageBlock>
+</apex:page>

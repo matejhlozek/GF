@@ -1,0 +1,15 @@
+<apex:page controller="JamesDavidJohn">
+  <apex:pageBlock title="Contact List">
+    <apex:form >  
+        <apex:commandLink value="Search James" action="{!setJameses}" rerender="list" style="margin-right:+10px"/>
+        <apex:commandLink value="Search David " action="{!setDavids}" rerender="list" style="margin-right:+10px"/>
+        <apex:commandLink value="Search John " action="{!setJohns}" rerender="list"/>
+      <apex:pageBlockTable value="{!contacts}" var="a" id="list">
+        <apex:column value="{!a.firstname}"/>
+        <apex:column value="{!a.lastname}"/>
+        <apex:column value="{!a.title}"/>
+        <apex:column value="{!a.email}"/>
+      </apex:pageBlockTable>
+    </apex:form>
+  </apex:pageBlock>
+</apex:page>

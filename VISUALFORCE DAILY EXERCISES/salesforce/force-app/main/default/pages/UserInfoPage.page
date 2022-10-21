@@ -1,0 +1,16 @@
+<apex:page standardController="User">    
+    <apex:pageBlock title="About {! $User.FirstName}" >
+        <apex:pageBlockSection title="User Info:" columns="2" > 
+            <apex:outputLabel value="Name:" for="Name"/> 
+            <apex:outputText value="Title: {! $User.Title}"/>
+            <apex:outputText value="Phone: {! $User.Phone}"/>            
+            <apex:outputText value="Mobile: {! $User.MobilePhone}"/>
+        </apex:pageBlockSection>
+        <apex:pageBlockSection title="Is user active:">
+        	{! IF($User.isActive, 'Yes', 'No') }
+        </apex:pageBlockSection>
+                <apex:pageBlockSection title="Till christmas">
+        	{! 12-MONTH(TODAY())} {! 'months to go'}
+        </apex:pageBlockSection>
+    </apex:pageBlock>          
+</apex:page>

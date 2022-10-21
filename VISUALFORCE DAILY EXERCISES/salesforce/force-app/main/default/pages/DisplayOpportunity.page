@@ -1,0 +1,11 @@
+<apex:page standardController="Opportunity">
+    <apex:pageBlock title="Opportunity">
+        <apex:pageBlockSection >
+    <apex:outputText value="{!Opportunity.name}" />
+    <apex:outputText value="{!Opportunity.AccountId}"/>
+        </apex:pageBlockSection>   
+                <apex:pageBlockSection title="Details" collapsible="false" >
+  				<apex:detail relatedList="false"/>
+        </apex:pageBlockSection>  
+    </apex:pageBlock>
+</apex:page>

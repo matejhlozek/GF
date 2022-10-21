@@ -1,0 +1,13 @@
+<apex:page controller="NewTaskController">
+    
+        <apex:pageBlock title="Add a Task" id="tasks_list">
+            <li>
+                 <apex:repeat var="task" value="{!newTasks}" rendered="true" id="rTasks">
+                <p><apex:outputLink value="/{!task.Subject}">{! Task.Subject } {! Task.Priority } {! Task.ActivityDate } {! Task.Description }</apex:outputLink></p>
+            </apex:repeat>
+   
+        
+                </li>
+        </apex:pageBlock>
+    
+</apex:page>
